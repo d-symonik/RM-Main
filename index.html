@@ -103,18 +103,33 @@
 
     <section class="supply section" id="protocol">
         <div class="supply-left panel reveal">
-            <p class="eyebrow">FIXED SUPPLY</p><h2>Fixed Supply. Forever.</h2>
-            <p>RM has a fixed lifetime supply. No additional passes will ever be created.</p>
+            <p class="eyebrow">FIXED SUPPLY</p><h2>1,000,000 RM. Forever.</h2>
+            <p>RM has a fixed lifetime supply of <b>1,000,000 RM</b>. No additional passes will ever be created.</p>
             <div class="stats">
-                <div><strong class="counter" data-target="1000000">0</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
-                <div><strong class="counter" data-target="100000">0</strong><span>PASS ALLOCATIONS<br>PERMANENTLY LIMITED</span></div>
+                <div class="stat-highlight"><strong class="counter" data-target="1000000">0</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
+                <div><strong class="counter" data-target="250000">0</strong><span>RM<br>ALLOCATION 1 — GENESIS</span></div>
             </div>
         </div>
         <div class="lock-visual reveal"><img class="lock-img" src="assets/lock.png" alt="RM fixed supply lock" loading="lazy"></div>
         <div class="cycles panel reveal">
-            <p class="eyebrow">PROTOCOL RELEASE</p><h2>Released Through Protocol Cycles</h2><p>RM is released through 4 fixed Protocol Cycles. Each cycle increases in contribution.</p>
+            <p class="eyebrow">ALLOCATION 1 — LIVE NOW</p><h2>250,000 RM at $100</h2>
+            <p>Allocation 1 (Genesis) releases <b>250,000 RM</b>. Once it is fully allocated, the price increases to <b>$200</b> in Allocation 2.</p>
+
+            <div class="allocation-progress" id="allocationProgress" data-total="250000" data-sold="80000">                <div class="alloc-head">
+                    <span>ALLOCATED: <b id="allocSold">0</b> RM</span>
+                    <span>REMAINING: <b id="allocRemaining">250,000</b> RM</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="Allocation 1 progress" aria-valuemin="0" aria-valuemax="250000">
+                    <div class="progress-fill" id="allocFill"></div>
+                </div>
+                <div class="alloc-foot">
+                    <span class="price-now">CURRENT PRICE — $100</span>
+                    <span class="price-next">NEXT PRICE — $200</span>
+                </div>
+            </div>
+
             <div class="cycle-grid">
-                <article class="cycle orange"><b>GENESIS</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$100</strong></article>
+                <article class="cycle orange is-active"><b>GENESIS</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$100</strong><em class="cycle-badge">LIVE</em></article>
                 <article class="cycle silver"><b>GROWTH</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$200</strong></article>
                 <article class="cycle gold"><b>EXPANSION</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$300</strong></article>
                 <article class="cycle cyan"><b>LEGACY</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$400</strong></article>

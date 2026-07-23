@@ -1948,3 +1948,73 @@ button {
     position: relative;
     z-index: 1
 }
+
+/* ── Total supply highlight ───────────────────────── */
+.stat-highlight strong {
+    font-size: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(90deg, #2dd4bf, #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ── Allocation 1 progress ────────────────────────── */
+.allocation-progress {
+    margin: 1.25rem 0 1.5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(45, 212, 191, .25);
+    border-radius: 14px;
+    background: rgba(45, 212, 191, .05);
+}
+.alloc-head, .alloc-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: .75rem;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    opacity: .85;
+}
+.alloc-head b { color: #2dd4bf; font-weight: 700; }
+.progress-track {
+    height: 12px;
+    margin: .65rem 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .08);
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f59e0b, #2dd4bf);
+    transition: width 1.2s cubic-bezier(.22, 1, .36, 1);
+}
+.price-now { color: #2dd4bf; font-weight: 600; }
+.price-next { opacity: .6; }
+
+/* ── Active allocation card ───────────────────────── */
+.cycle { position: relative; }
+.cycle.is-active {
+    border: 1px solid rgba(245, 158, 11, .55);
+    box-shadow: 0 0 22px rgba(245, 158, 11, .18);
+}
+.cycle-badge {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-style: normal;
+    font-size: .6rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    padding: .15rem .45rem;
+    border-radius: 999px;
+    color: #0b0f14;
+    background: #f59e0b;
+}
+.counter,
+.alloc-head b {
+    font-variant-numeric: tabular-nums; /* цифри однакової ширини */
+    display: inline-block;
+    text-align: left;
+}

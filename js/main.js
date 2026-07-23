@@ -32,6 +32,7 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 document.querySelectorAll('.counter').forEach(counter=>{
 	const target=Number(counter.dataset.target);
+	counter.style.minWidth=target.toLocaleString().length+'ch';
 	const obs=new IntersectionObserver(entries=>{
 		if(!entries[0].isIntersecting)return;
 		const start=performance.now(), duration=1400;
@@ -45,6 +46,7 @@ document.querySelectorAll('.counter').forEach(counter=>{
 	});
 	obs.observe(counter);
 });
+
 
 document.querySelectorAll('.tilt').forEach(card=>{
 	card.addEventListener('pointermove',e=>{
@@ -60,3 +62,33 @@ window.addEventListener('pointermove',e=>{
 	const x=(e.clientX/innerWidth-.5)*10, y=(e.clientY/innerHeight-.5)*7;
 	hero.style.setProperty('--mx',x+'px');hero.style.setProperty('--my',y+'px');
 },{passive:true});
+
+// ... existing code ...
+
+/* ── Allocation 1 progress (remaining until price increase) ── */
+(() => {
+	const box = document.getElementById('allocationProgress');
+	if (!box) return;
+
+	const total = parseInt(box.dataset.total, 10) || 250000;   // Allocation 1 size
+	const sold = Math.min(parseInt(box.dataset.sold, 10) || 0, total); // update data-sold as sales progress
+	const remaining = total - sold;
+
+	document.getElementById('allocSold').textContent = sold.toLocaleString();
+	document.getElementById('allocRemaining').textContent = remaining.toLocaleString();
+
+	const fill = document.getElementById('allocFill');
+	const track = fill.parentElement;
+	track.setAttribute('aria-valuenow', String(sold));
+
+	// Animate the bar when it scrolls into view
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				fill.style.width = `${(sold / total) * 100}%`;
+				observer.disconnect();
+			}
+		});
+	}, { threshold: 0.4 });
+	observer.observe(box);
+})();
