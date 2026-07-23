@@ -1250,6 +1250,93 @@ button {
     }
 }
 
+/* ===== Tablets (portrait/landscape, iPad-class devices) ===== */
+@media (max-width: 1024px) {
+    .header {
+        padding: 0 20px
+    }
+
+    .section {
+        padding: 90px 0
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 150px;
+        gap: 30px
+    }
+
+    .hero-visual {
+        height: 420px
+    }
+
+    .pass-layout {
+        grid-template-columns:150px 1fr;
+        gap: 36px
+    }
+
+    .pass-card {
+        grid-template-columns:110px 1fr 140px;
+        padding: 22px 28px
+    }
+
+    .pass-letter {
+        font-size: 50px
+    }
+
+    .discount b {
+        font-size: 34px
+    }
+
+    .steps {
+        column-gap: 8px
+    }
+
+    .steps h3 {
+        font-size: 13.5px
+    }
+
+    .product-grid {
+        gap: 10px
+    }
+
+    .product-card {
+        min-height: 195px
+    }
+
+    .product {
+        height: 120px
+    }
+
+    .supply {
+        gap: 16px
+    }
+
+    .supply-left, .cycles {
+        padding: 28px
+    }
+
+    .cycle-grid {
+        gap: 8px
+    }
+
+    .cycle {
+        padding: 12px 8px
+    }
+
+    .stats {
+        gap: 16px
+    }
+
+    .principles article {
+        padding: 24px
+    }
+
+    .footer-top {
+        gap: 24px
+    }
+}
+
 @media (max-width: 767px) {
     .header {
         height: 66px;
@@ -1339,7 +1426,7 @@ button {
         border-bottom: 1px solid var(--border);
         min-height: auto;
         padding: 26px 22px;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         gap: 22px
     }
@@ -1384,9 +1471,10 @@ button {
     }
 
     .pass-card {
-        grid-template-columns:65px 1fr 100px;
-        min-height: 130px;
-        padding: 18px 22px
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .pass-letter {
@@ -1509,6 +1597,264 @@ button {
     .footer-bottom {
         flex-direction: column;
         gap: 10px
+    }
+
+    .connector {
+        margin: 24px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0 14px
+    }
+
+    .brand small {
+        display: none
+    }
+
+    .section {
+        padding: 60px 0
+    }
+
+    .hero {
+        padding-top: 105px
+    }
+
+    .hero h1 {
+        font-size: clamp(34px, 11vw, 46px)
+    }
+
+    .lead {
+        font-size: 14.5px
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px
+    }
+
+    .hero-actions .btn {
+        width: 100%
+    }
+
+    .hero-visual {
+        height: 250px
+    }
+
+    .hero-device {
+        transform: scale(.58) rotate(-10deg)
+    }
+
+    .orbit {
+        transform: scale(.55) rotate(18deg)
+    }
+
+    .benefit-strip article {
+        padding: 20px 16px;
+        gap: 16px;
+        text-align: center;
+
+    }
+
+    .line-icon {
+        width: 64px;
+        height: 64px
+    }
+
+    .benefit-strip h3 {
+        font-size: 14.5px
+    }
+
+    .benefit-strip p {
+        font-size: 12px;
+        max-width: none
+    }
+
+    .section-heading {
+        margin-bottom: 34px
+    }
+
+    .section-heading h2, .supply h2 {
+        font-size: clamp(26px, 8vw, 34px)
+    }
+
+    .pass-layout {
+        gap: 22px
+    }
+
+    .timeline {
+        min-height: 150px;
+        padding-left: 45px
+    }
+
+    .time-step:before {
+        left: -34px
+    }
+
+    .pass-card {
+        grid-template-columns:1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 12px 16px;
+        min-height: auto
+    }
+
+    .pass-letter {
+        font-size: 38px
+    }
+
+    .discount {
+        text-align: center
+    }
+
+    .how {
+        padding: 22px 14px
+    }
+
+    .steps article {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .product-grid {
+        gap: 8px
+    }
+
+    .product-card {
+        min-height: 170px;
+        padding: 14px 10px
+    }
+
+    .product {
+        height: 100px
+    }
+
+    .product-card h3 {
+        font-size: 11.5px
+    }
+
+    .supply-left, .cycles {
+        padding: 20px
+    }
+
+    .stats {
+        grid-template-columns:1fr;
+        gap: 16px;
+        margin-top: 32px
+    }
+
+    .stats div + div {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+        padding-left: 0;
+        padding-top: 16px
+    }
+
+    .cycle-grid {
+        gap: 8px
+    }
+
+    .cycle {
+        min-height: 110px;
+        padding: 12px 8px
+    }
+
+    .cta {
+        padding: 26px 18px
+    }
+
+    .cta h2 {
+        font-size: clamp(24px, 7vw, 32px)
+    }
+
+    .footer nav {
+        gap: 10px
+    }
+
+    .footer nav a, .socials a {
+        font-size: 10.5px
+    }
+}
+
+/* ===== Extra-small phones (e.g. iPhone SE, small Android, <=360px) ===== */
+@media (max-width: 360px) {
+    .section {
+        width: calc(100% - 24px)
+    }
+
+    .btn {
+        padding: 0 16px;
+        font-size: 12px
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 11vw, 38px)
+    }
+
+    .benefit-strip article {
+        padding: 16px 14px;
+        gap: 12px
+    }
+
+    .line-icon {
+        width: 52px;
+        height: 52px
+    }
+
+    .product-grid {
+        grid-template-columns:1fr;
+        gap: 24px;
+    }
+
+    .product-card {
+        min-height: 150px;
+        padding: 10px 8px
+    }
+
+    .product {
+        height: 82px
+    }
+
+    .pass-card {
+        padding: 12px 16px;    }
+
+    .cycle-grid {
+        grid-template-columns:1fr;
+        gap: 6px
+    }
+
+    .cycle {
+        min-height: 100px
+    }
+
+    .footer nav {
+        gap: 8px 12px
+    }
+}
+
+/* ===== Short-height / landscape phones ===== */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        min-height: auto;
+        padding-top: 90px;
+        gap: 20px
+    }
+
+    .hero-visual {
+        height: 200px;
+        order: 2
+    }
+
+    .hero-actions {
+        flex-direction: row
+    }
+
+    .benefit-strip article {
+        min-height: auto
     }
 }
 
