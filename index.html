@@ -28,7 +28,7 @@
     </nav>
     <div class="header-actions">
         <a class="btn btn-primary" href="#cta">Get RM Now <span>→</span></a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </header>
 
@@ -103,17 +103,17 @@
 
     <section class="supply section" id="protocol">
         <div class="supply-left panel reveal">
-            <p class="eyebrow">FIXED SUPPLY</p><h2>1,000,000 RM. Forever.</h2>
-            <p>RM has a fixed lifetime supply of <b>1,000,000 RM</b>. No additional passes will ever be created.</p>
+            <p class="eyebrow">FIXED SUPPLY</p><h2><span id="fixedSupplyTitleAmount">1,000,000 RM</span>. Forever.</h2>
+            <p>RM has a fixed lifetime supply of <b id="fixedSupplyDescriptionAmount">1,000,000 RM</b>. No additional passes will ever be created.</p>
             <div class="stats">
-                <div class="stat-highlight"><strong class="counter" data-target="1000000">0</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
-                <div><strong class="counter" data-target="250000">0</strong><span>RM<br>ALLOCATION 1 — GENESIS</span></div>
+                <div class="stat-highlight"><strong class="counter" id="totalSupplyCounter" data-target="1000000">0</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
+                <div><strong class="counter" id="activeAllocationCounter" data-target="250000">0</strong><span>RM<br><span id="activeAllocationLabel">ALLOCATION 1 — GENESIS</span></span></div>
             </div>
         </div>
         <div class="lock-visual reveal"><img class="lock-img" src="assets/lock.png" alt="RM fixed supply lock" loading="lazy"></div>
         <div class="cycles panel reveal">
-            <p class="eyebrow">ALLOCATION 1 — LIVE NOW</p><h2>250,000 RM at $100</h2>
-            <p>Allocation 1 (Genesis) releases <b>250,000 RM</b>. Once it is fully allocated, the price increases to <b>$200</b> in Allocation 2.</p>
+            <p class="eyebrow" id="allocationKicker">ALLOCATION 1 — LIVE NOW</p><h2 id="allocationTitle">250,000 RM at $100</h2>
+            <p id="allocationDescription">Allocation 1 (Genesis) releases <b>250,000 RM</b>. Once it is fully allocated, the price increases to <b>$200</b> in Allocation 2.</p>
 
             <div class="allocation-progress" id="allocationProgress" data-total="250000" data-sold="80000">                <div class="alloc-head">
                     <span>ALLOCATED: <b id="allocSold">0</b> RM</span>
@@ -123,16 +123,13 @@
                     <div class="progress-fill" id="allocFill"></div>
                 </div>
                 <div class="alloc-foot">
-                    <span class="price-now">CURRENT PRICE — $100</span>
-                    <span class="price-next">NEXT PRICE — $200</span>
+                    <span class="price-now" id="allocPriceNow">CURRENT PRICE — $100</span>
+                    <span class="price-next" id="allocPriceNext">NEXT PRICE — $200</span>
                 </div>
             </div>
 
-            <div class="cycle-grid">
-                <article class="cycle orange is-active"><b>GENESIS</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$100</strong><em class="cycle-badge">LIVE</em></article>
-                <article class="cycle silver"><b>GROWTH</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$200</strong></article>
-                <article class="cycle gold"><b>EXPANSION</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$300</strong></article>
-                <article class="cycle cyan"><b>LEGACY</b><span>250,000 RM</span><span>25,000 Passes</span><strong>$400</strong></article>
+            <div class="cycle-grid" id="allocationGrid" aria-live="polite" aria-busy="true">
+                <p class="allocation-status">Loading allocations…</p>
             </div>
         </div>
     </section>
