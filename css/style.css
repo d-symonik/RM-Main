@@ -284,7 +284,7 @@ button {
 }
 
 .hero h1 {
-    font-family: "Space Grotesk";
+    font-family: "Space Grotesk", system-ui;
     font-size: clamp(52px, 6.4vw, 88px);
     line-height: .98;
     letter-spacing: -.055em;
@@ -443,6 +443,14 @@ button {
     flex-direction: column;
     align-items: flex-start;
     transition: background .3s ease
+}
+
+.benefit-strip > a {
+    display: contents
+}
+
+.benefit-strip article {
+    cursor: pointer
 }
 
 .benefit-strip article:hover {
@@ -1117,7 +1125,6 @@ button {
     }
 }
 
-/* ===== Tablets (portrait/landscape, iPad-class devices) ===== */
 @media (max-width: 1024px) {
     .header {
         padding: 0 20px
@@ -1647,7 +1654,6 @@ button {
     }
 }
 
-/* ===== Extra-small phones (e.g. iPhone SE, small Android, <=360px) ===== */
 @media (max-width: 360px) {
     .section {
         width: calc(100% - 24px)
@@ -1703,7 +1709,6 @@ button {
     }
 }
 
-/* ===== Short-height / landscape phones ===== */
 @media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
     .hero {
         min-height: auto;
@@ -1738,7 +1743,6 @@ button {
     }
 }
 
-/* ===== Generated image assets integration ===== */
 .line-icon {
     display: flex;
     align-items: center;
@@ -1807,7 +1811,6 @@ button {
     z-index: 1
 }
 
-/* ── Total supply highlight ───────────────────────── */
 .stat-highlight strong {
     font-size: clamp(2rem, 4vw, 3rem);
     background: linear-gradient(90deg, #2dd4bf, #22d3ee);
@@ -1816,7 +1819,6 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
-/* ── Allocation 1 progress ────────────────────────── */
 .allocation-progress {
     margin: 1.25rem 0 1.5rem;
     padding: 1rem 1.1rem;
@@ -1851,7 +1853,6 @@ button {
 .price-now { color: #2dd4bf; font-weight: 600; }
 .price-next { opacity: .6; }
 
-/* ── Active allocation card ───────────────────────── */
 .cycle { position: relative; }
 .cycle.is-active {
     border: 1px solid rgba(245, 158, 11, .55);
@@ -1872,7 +1873,276 @@ button {
 }
 .counter,
 .alloc-head b {
-    font-variant-numeric: tabular-nums; /* цифри однакової ширини */
+    font-variant-numeric: tabular-nums;
     display: inline-block;
     text-align: left;
+}
+
+/* Privileges */
+.privilege-list {
+    display: flex;
+    flex-direction: column;
+    gap: 70px
+}
+
+.privilege-card {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 60px;
+    align-items: center
+}
+
+.privilege-card.reverse .privilege-media {
+    order: 2
+}
+
+.privilege-media {
+    display: grid;
+    place-items: center
+}
+
+.privilege-media img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .5))
+}
+
+.privilege-tiers {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px
+}
+
+.tier-badge {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    font: 800 15px "Space Grotesk";
+    border-radius: 6px;
+    border: 1px solid;
+    padding: 5px
+}
+
+.tier-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.tier-head-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto
+}
+
+.tier-badge.tier-r {
+    color: var(--bronze);
+    border-color: var(--bronze);
+    background: rgba(154, 85, 32, .12)
+}
+
+.tier-badge.tier-c {
+    color: var(--silver);
+    border-color: var(--silver);
+    background: rgba(201, 205, 208, .1)
+}
+
+.tier-badge.tier-l {
+    color: var(--gold2);
+    border-color: var(--gold);
+    background: rgba(243, 163, 77, .12)
+}
+
+.privilege-body h3 {
+    font-family: "Space Grotesk";
+    font-size: clamp(26px, 3vw, 34px);
+    margin: 0 0 12px;
+    letter-spacing: -.02em
+}
+
+.privilege-lead {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 26px
+}
+
+.privilege-how {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--cyan);
+    margin: 0 0 14px
+}
+
+.privilege-steps {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.privilege-steps li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 4px
+}
+
+.privilege-steps li::marker {
+    color: var(--cyan);
+    font-weight: 700
+}
+
+.privilege-foot {
+    margin: 20px 0 0;
+    font-size: 13px;
+    color: var(--text)
+}
+
+/* Exclusivity */
+.exclusivity {
+    padding: 55px
+}
+
+.partner-matrix {
+    display: flex;
+    flex-direction: column
+}
+
+.partner-row {
+    display: grid;
+    grid-template-columns: 1fr 70px 70px 70px;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border)
+}
+
+.partner-row:last-child {
+    border-bottom: 0
+}
+
+.partner-row.head {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding-bottom: 14px
+}
+
+.partner-row.head span:not(:first-child) {
+    text-align: center
+}
+
+.partner-row span:first-child {
+    font-family: "Space Grotesk";
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+.partner-row span:first-child small {
+    font-family: Inter;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400
+}
+
+.partner-group {
+    padding: 22px 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--gold2);
+    text-transform: uppercase
+}
+
+.dot {
+    justify-self: center;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1)
+}
+
+.dot.on {
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan)
+}
+
+/* Savings */
+.savings-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden
+}
+
+.savings-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 90px 90px;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border)
+}
+
+.savings-row:last-child {
+    border-bottom: 0
+}
+
+.savings-row.head {
+    background: rgba(255, 255, 255, .03);
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase
+}
+
+.savings-row span:first-child {
+    font-family: "Space Grotesk";
+    font-size: 15px
+}
+
+.savings-row:not(.head) span:not(:first-child) {
+    text-align: center;
+    font: 700 16px "Space Grotesk";
+    color: var(--gold2)
+}
+
+.savings-row.head span:not(:first-child) {
+    text-align: center
+}
+
+@media (max-width: 900px) {
+    .privilege-card, .privilege-card.reverse {
+        grid-template-columns: 1fr;
+        gap: 28px
+    }
+
+    .privilege-card.reverse .privilege-media {
+        order: 0
+    }
+
+    .privilege-media img {
+        max-width: 260px
+    }
+
+    .exclusivity {
+        padding: 30px 20px
+    }
+
+    .partner-row, .savings-row {
+        grid-template-columns: 1fr 46px 46px 46px;
+        padding: 14px 0
+    }
+
+    .savings-row {
+        padding: 14px 16px
+    }
 }

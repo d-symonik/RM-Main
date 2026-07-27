@@ -194,8 +194,6 @@ function renderActiveAllocation(activeAllocation, allocations) {
 	document.querySelector('#allocSold').textContent = sold.toLocaleString();
 	document.querySelector('#allocRemaining').textContent = remaining.toLocaleString();
 	document.querySelector('#allocationKicker').textContent = `ALLOCATION ${allocations.indexOf(activeAllocation) + 1} — LIVE NOW`;
-	document.querySelector('#allocationTitle').textContent = `${activeAllocation.rmAmount.toLocaleString()} RM at $${activeAllocation.price.toLocaleString()}`;
-	document.querySelector('#allocationDescription').textContent = `Allocation ${allocations.indexOf(activeAllocation) + 1} (${activeAllocation.name}) releases ${activeAllocation.rmAmount.toLocaleString()} RM.${nextAllocation ? ` Once it is fully allocated, the price increases to $${nextAllocation.price.toLocaleString()} in the next allocation.` : ''}`;
 	priceNow.textContent = `CURRENT PRICE — $${activeAllocation.price.toLocaleString()}`;
 	priceNext.textContent = nextAllocation ? `NEXT PRICE — $${nextAllocation.price.toLocaleString()}` : 'FINAL ALLOCATION';
 	allocationProgress.dataset.total = String(activeAllocation.rmAmount);
