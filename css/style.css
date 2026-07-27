@@ -1860,8 +1860,8 @@ button {
 }
 .cycle-badge {
     position: absolute;
-    top: .5rem;
-    right: .5rem;
+    top: -0.5rem;
+    right: -0.5rem;
     font-style: normal;
     font-size: .6rem;
     font-weight: 800;
@@ -1869,7 +1869,10 @@ button {
     padding: .15rem .45rem;
     border-radius: 999px;
     color: #0b0f14;
-    background: #f59e0b;
+    background: #2dd4bf;
+    text-align: right;
+    z-index: 2;
+    width: max-content;
 }
 .counter,
 .alloc-head b {
@@ -2145,4 +2148,7 @@ button {
     .savings-row {
         padding: 14px 16px
     }
+}
+.is-hidden {
+    display: none;
 }

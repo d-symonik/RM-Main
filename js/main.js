@@ -18,11 +18,12 @@ const SELECTORS = {
 const USE_MOCK_ALLOCATIONS = true;
 const ALLOCATIONS_ENDPOINT = '/api/allocations';
 const MOCK_ALLOCATIONS = [
-	{ name: 'Genesis', rmAmount: 250000, passCount: 25000, price: 100, allocatedAmount: 80000, tone: 'orange',},
-	{ name: 'Growth', rmAmount: 250000, passCount: 25000, price: 200, allocatedAmount: 209000, tone: 'silver', isActive: true  },
-	{ name: 'Expansion', rmAmount: 250000, passCount: 25000, price: 300, allocatedAmount: 0, tone: 'gold' },
-	{ name: 'Legacy', rmAmount: 250000, passCount: 25000, price: 400, allocatedAmount: 0, tone: 'cyan' }
-];
+		{ name: 'Genesis', rmAmount: 250000, passCount: 25000, price: 100, allocatedAmount: 80000, tone: 'orange',},
+		{ name: 'Growth', rmAmount: 250000, passCount: 25000, price: 200, allocatedAmount: 209000, tone: 'silver',isActive: true  },
+		{ name: 'Expansion', rmAmount: 20000, passCount: 25000, price: 300, allocatedAmount: 0, tone: 'gold' },
+		{ name: 'Legacy', rmAmount: 250000, passCount: 25000, price: 400, allocatedAmount: 0, tone: 'cyan' }
+	]
+
 
 const header = document.querySelector(SELECTORS.header);
 const navigation = document.querySelector(SELECTORS.navigation);
@@ -130,7 +131,7 @@ function updateCounterTarget(selector, value) {
 	if (counter.dataset.counterStarted === 'true') counter.textContent = formattedValue;
 }
 
-function getMockAllocations() {
+async function getMockAllocations() {
 	return Promise.resolve(MOCK_ALLOCATIONS);
 }
 
@@ -139,22 +140,7 @@ async function getAllocations() {
 	const response = await fetch(ALLOCATIONS_ENDPOINT, { headers: { Accept: 'application/json' } });
 	if (!response.ok) throw new Error(`Failed to load allocations: ${response.status}`);
 	const payload = await response.json();
-	return Array.isArray(payload) ? payload : payload.allocations;
-}
-
-function normalizeAllocation(allocation, index) {
-	const tones = ['orange', 'silver', 'gold', 'cyan'];
-	const rmAmount = Number(allocation.rmAmount);
-	const passCount = Number(allocation.passCount);
-	const price = Number(allocation.price);
-	const allocatedAmount = Number(allocation.allocatedAmount ?? 0);
-	if (!allocation.name || ![rmAmount, passCount, price, allocatedAmount].every(Number.isFinite)) return null;
-	return {
-		name: String(allocation.name), rmAmount, passCount, price,
-		allocatedAmount: Math.max(0, Math.min(allocatedAmount, rmAmount)),
-		tone: tones.includes(allocation.tone) ? allocation.tone : tones[index % tones.length],
-		isActive: Boolean(allocation.isActive)
-	};
+	return payload.data;
 }
 
 function renderAllocationCards(allocations) {
@@ -191,11 +177,24 @@ function renderActiveAllocation(activeAllocation, allocations) {
 	const remaining = activeAllocation.rmAmount - sold;
 	const priceNow = document.querySelector('#allocPriceNow');
 	const priceNext = document.querySelector('#allocPriceNext');
+	const kicker = document.querySelector('#allocationKicker');
+	const title = document.querySelector('#allocationTitle');
+	const description = document.querySelector('#allocationDescription');
+
 	document.querySelector('#allocSold').textContent = sold.toLocaleString();
 	document.querySelector('#allocRemaining').textContent = remaining.toLocaleString();
-	document.querySelector('#allocationKicker').textContent = `ALLOCATION ${allocations.indexOf(activeAllocation) + 1} — LIVE NOW`;
+
+	kicker.textContent = `ALLOCATION ${allocations.indexOf(activeAllocation) + 1} — LIVE NOW`;
+	title.textContent = `${activeAllocation.rmAmount.toLocaleString()} RM at $${activeAllocation.price.toLocaleString()}`;
+	description.textContent = nextAllocation
+		? `The next ${nextAllocation.rmAmount.toLocaleString()} RM will be available at $${nextAllocation.price.toLocaleString()} per RM once this allocation is fully allocated.`
+		: `This is the final allocation. Once fully allocated, no further RM will be issued.`;
+
+	[kicker, title, description].forEach((el) => el.classList.remove('is-hidden'));
+
 	priceNow.textContent = `CURRENT PRICE — $${activeAllocation.price.toLocaleString()}`;
 	priceNext.textContent = nextAllocation ? `NEXT PRICE — $${nextAllocation.price.toLocaleString()}` : 'FINAL ALLOCATION';
+	allocationProgress.classList.remove('is-hidden');
 	allocationProgress.dataset.total = String(activeAllocation.rmAmount);
 	allocationProgress.dataset.sold = String(sold);
 	const track = document.querySelector('#allocFill')?.parentElement;
@@ -204,40 +203,80 @@ function renderActiveAllocation(activeAllocation, allocations) {
 	track?.setAttribute('aria-valuenow', String(sold));
 	if (fill) fill.style.width = `${(sold / activeAllocation.rmAmount) * 100}%`;
 }
-
-function renderSupplyStats(activeAllocation, allocations) {
+function renderSupplyStats(allocations, activeAllocation) {
 	const totalSupply = allocations.reduce((total, allocation) => total + allocation.rmAmount, 0);
-	const activeIndex = allocations.indexOf(activeAllocation) + 1;
 	const formattedTotal = `${totalSupply.toLocaleString()} RM`;
-	document.querySelector('#fixedSupplyTitleAmount').textContent = formattedTotal;
-	document.querySelector('#fixedSupplyDescriptionAmount').textContent = formattedTotal;
-	document.querySelector('#activeAllocationLabel').textContent = `ALLOCATION ${activeIndex} — ${activeAllocation.name.toUpperCase()}`;
-	updateCounterTarget('#totalSupplyCounter', totalSupply);
-	updateCounterTarget('#activeAllocationCounter', activeAllocation.rmAmount);
-}
+	const titleAmount = document.querySelector('#fixedSupplyTitleAmount');
+	const descriptionAmount = document.querySelector('#fixedSupplyDescriptionAmount');
+	const activeLabel = document.querySelector('#activeAllocationLabel');
 
-async function loadAllocations() {
-	if (!allocationGrid) return;
-	try {
-		const response = await getAllocations();
-		const allocations = response.map(normalizeAllocation).filter(Boolean);
-		if (!allocations.length) throw new Error('No valid allocations received');
-		const activeAllocation = allocations.find((allocation) => allocation.isActive) || allocations[0];
-		activeAllocation.isActive = true;
-		renderAllocationCards(allocations);
-		renderActiveAllocation(activeAllocation, allocations);
-		renderSupplyStats(activeAllocation, allocations);
-	} catch (error) {
-		console.error('Unable to load allocations.', error);
-		allocationGrid.replaceChildren();
-		const message = document.createElement('p');
-		message.className = 'allocation-status allocation-status--error';
-		message.textContent = 'Allocations are temporarily unavailable.';
-		allocationGrid.append(message);
-		allocationGrid.setAttribute('aria-busy', 'false');
+	titleAmount.textContent = formattedTotal;
+	descriptionAmount.textContent = formattedTotal;
+	titleAmount.classList.remove('is-hidden');
+	descriptionAmount.classList.remove('is-hidden');
+	updateCounterTarget('#totalSupplyCounter', totalSupply);
+
+	if (activeAllocation) {
+		const activeIndex = allocations.indexOf(activeAllocation) + 1;
+		activeLabel.textContent = `ALLOCATION ${activeIndex} — ${activeAllocation.name.toUpperCase()}`;
+		activeLabel.classList.remove('is-hidden');
+		updateCounterTarget('#activeAllocationCounter', activeAllocation.rmAmount);
 	}
 }
+function showFallbackAllocationState() {
+	allocationGrid.replaceChildren();
+	const message = document.createElement('p');
+	message.className = 'allocation-status';
+	message.textContent = 'Allocation details will be updated shortly.';
+	allocationGrid.append(message);
+	allocationGrid.setAttribute('aria-busy', 'false');
 
+	const titleAmount = document.querySelector('#fixedSupplyTitleAmount');
+	const descriptionAmount = document.querySelector('#fixedSupplyDescriptionAmount');
+	titleAmount.textContent = '—';
+	descriptionAmount.textContent = '';
+	document.querySelector('#totalSupplyCounter').textContent = '—';
+	document.querySelector('#activeAllocationCounter').textContent = '—';
+
+	showNoActiveAllocationMessage();
+}
+async function loadAllocations() {
+	if (!allocationGrid) return;
+	let allocations;
+	try {
+		allocations = await getAllocations();
+	} catch (error) {
+		console.error('Unable to load allocations.', error);
+		showFallbackAllocationState();
+		return;
+	}
+
+	if (!allocations || !allocations.length) {
+		showFallbackAllocationState();
+		return;
+	}
+
+	const activeAllocation = allocations.find((allocation) => allocation.isActive);
+
+	renderAllocationCards(allocations);
+	renderSupplyStats(allocations, activeAllocation);
+
+	if (activeAllocation) {
+		renderActiveAllocation(activeAllocation, allocations);
+	} else {
+		showNoActiveAllocationMessage();
+	}
+}
+function showNoActiveAllocationMessage() {
+	const kicker = document.querySelector('#allocationKicker');
+	const title = document.querySelector('#allocationTitle');
+	const description = document.querySelector('#allocationDescription');
+	kicker.textContent = 'NO ALLOCATION LIVE';
+	title.textContent = 'No allocation is currently active.';
+	description.textContent = 'Check back soon for the next allocation window.';
+	[kicker, title, description].forEach((el) => el.classList.remove('is-hidden'));
+	allocationProgress?.classList.add('is-hidden');
+}
 function setupCardTilt() {
 	if (reduceMotion.matches) return;
 	document.querySelectorAll(SELECTORS.tiltCards).forEach((card) => {

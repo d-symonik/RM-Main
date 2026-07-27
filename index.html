@@ -240,38 +240,37 @@
 
     <section class="supply section" id="protocol">
         <div class="supply-left panel reveal">
-            <p class="eyebrow">FIXED SUPPLY</p><h2><span id="fixedSupplyTitleAmount">1,000,000 RM</span>. Forever.</h2>
-            <p>RM has a fixed lifetime supply of <b id="fixedSupplyDescriptionAmount">1,000,000 RM</b>. No additional passes will ever be created.</p>
+            <p class="eyebrow">FIXED SUPPLY</p><h2><span id="fixedSupplyTitleAmount">Calculating supply…</span></h2>
+            <p>RM has a fixed lifetime supply determined by the protocol's allocation schedule. <b id="fixedSupplyDescriptionAmount"></b> No additional passes will ever be created.</p>
             <div class="stats">
-                <div class="stat-highlight"><strong class="counter" id="totalSupplyCounter" data-target="1000000">0</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
-                <div><strong class="counter" id="activeAllocationCounter" data-target="250000">0</strong><span>RM<br><span id="activeAllocationLabel">ALLOCATION 1 — GENESIS</span></span></div>
+                <div class="stat-highlight"><strong class="counter" id="totalSupplyCounter" data-target="0">—</strong><span>RM<br>TOTAL FIXED SUPPLY</span></div>
+                <div><strong class="counter" id="activeAllocationCounter" data-target="0">—</strong><span>RM<br><span id="activeAllocationLabel"></span></span></div>
             </div>
         </div>
         <div class="lock-visual reveal"><img class="lock-img" src="assets/lock.png" alt="RM fixed supply lock" loading="lazy"></div>
         <div class="cycles panel reveal">
-            <p class="eyebrow" id="allocationKicker">ALLOCATION 1 — LIVE NOW</p>
-            <h2 id="allocationTitle">250,000 RM at $100</h2>
-            <p id="allocationDescription">The first 250,000 RM are available with a $100 contribution per RM. Every
-                following 250,000 RM allocated increases the contribution by $100 per RM.</p>
+            <p class="eyebrow" id="allocationKicker">LOADING ALLOCATION DATA…</p>
+            <h2 id="allocationTitle">Fetching current terms…</h2>
+            <p id="allocationDescription">Allocation details are being retrieved from the protocol.</p>
 
-            <div class="allocation-progress" id="allocationProgress" data-total="250000" data-sold="80000"><div class="alloc-head">
-                <span>ALLOCATED: <b id="allocSold">0</b> RM</span>
-                <span>REMAINING: <b id="allocRemaining">250,000</b> RM</span>
-            </div>
-                <div class="progress-track" role="progressbar" aria-label="Allocation 1 progress" aria-valuemin="0" aria-valuemax="250000">
+            <div class="allocation-progress is-hidden" id="allocationProgress" aria-busy="true">
+                <div class="alloc-head">
+                    <span>ALLOCATED: <b id="allocSold">0</b> RM</span>
+                    <span>REMAINING: <b id="allocRemaining">0</b> RM</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="Allocation progress" aria-valuemin="0" aria-valuenow="0">
                     <div class="progress-fill" id="allocFill"></div>
                 </div>
                 <div class="alloc-foot">
-                    <span class="price-now" id="allocPriceNow">CURRENT PRICE — $100</span>
-                    <span class="price-next" id="allocPriceNext">NEXT PRICE — $200</span>
+                    <span class="price-now" id="allocPriceNow"></span>
+                    <span class="price-next" id="allocPriceNext"></span>
                 </div>
             </div>
 
             <div class="cycle-grid" id="allocationGrid" aria-live="polite" aria-busy="true">
                 <p class="allocation-status">Loading allocations…</p>
             </div>
-        </div>
-    </section>
+        </div>    </section>
 
     <section class="principles section panel reveal">
         <article><span>✦</span><div><h3>Loyalty Treasury</h3><p>0.5% transfer fee supports future rewards and partner benefits.</p></div></article>
