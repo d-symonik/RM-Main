@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="RM Protocol Progress — live allocation status of the Mining Race Wallet loyalty protocol.">
+    <title>RM Protocol Progress | Race Miles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/protocol-progress.css">
+</head>
+<body>
+<div class="site-bg" aria-hidden="true"><span class="trail trail-a"></span><span class="trail trail-b"></span><span class="grid-glow"></span></div>
+
+<header class="header" id="header">
+    <a class="brand" href="index.html" aria-label="RM home">
+        <img class="rm-logo" src="assets/rm-logo.png"/>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary navigation">
+        <a href="index.html#overview">Overview</a>
+        <a href="index.html#passes">Passes</a>
+        <a href="index.html#privileges">Privileges</a>
+        <a href="index.html#ecosystem">Ecosystem</a>
+        <a href="index.html#protocol">Protocol</a>
+        <a class="active" href="protocol-progress.html#progress">Progress</a>
+        <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+        <a class="btn btn-primary" href="index.html#cta">Get RM Now <span>→</span></a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <section class="section progress-page" id="progress">
+        <div class="progress-hero reveal">
+            <div class="progress-hero-copy">
+                <h1><span class="accent">RM</span> Protocol Progress</h1>
+                <p>Limited supply. Increasing contribution with each allocation.</p>
+            </div>
+            <div class="progress-total-badge" id="progressTotalBadge" aria-busy="true">
+                <div class="progress-hex" aria-hidden="true">RM</div>
+                <div class="progress-total-copy">
+                    <span class="progress-total-label">Total Passes</span>
+                    <strong id="progressTotalCounter">—</strong>
+                    <span class="progress-total-sub">Maximum Supply</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-list reveal" id="progressList" aria-live="polite" aria-busy="true">
+            <p class="allocation-status">Loading allocation progress…</p>
+        </div>
+
+        <p class="center-note progress-note"><span class="progress-note-icon" aria-hidden="true">ⓘ</span> Pass prices are updated after each RM allocation is fully completed.</p>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-top">
+        <a class="brand" href="index.html" aria-label="RM home">
+            <img class="rm-logo" src="assets/rm-logo.png"/>
+        </a>
+        <p>RM (Race Miles) is the loyalty protocol of the Mining Race Wallet.</p>
+        <nav aria-label="Footer navigation"><a href="index.html#overview">Overview</a><a href="index.html#passes">Passes</a><a href="index.html#privileges">Privileges</a><a href="index.html#ecosystem">Ecosystem</a><a href="index.html#protocol">Protocol</a><a href="protocol-progress.html">Progress</a><a href="index.html#faq">FAQ</a></nav>
+        <div class="socials"><a href="#">TG</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 RM (Race Miles). All rights reserved.</span><span>Terms&nbsp;&nbsp; Privacy</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/protocol-progress.js"></script>
+</body>
+</html>
