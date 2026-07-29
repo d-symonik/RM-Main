@@ -299,6 +299,21 @@ function setupHeroParallax() {
 	}, { passive: true });
 }
 
+function setupVideoPlayButton() {
+	const frame = document.querySelector('#videoFrame');
+	const video = document.querySelector('#watchVideo');
+	const bigPlay = document.querySelector('#videoBigPlay');
+	if (!frame || !video || !bigPlay) return;
+
+	bigPlay.addEventListener('click', () => {
+		video.controls = true;
+		video.play().catch(() => {
+		});
+	});
+
+	video.addEventListener('play', () => frame.classList.add('is-playing'), { once: true });
+}
+
 window.addEventListener('scroll', handleScroll, { passive: true });
 setupMenu();
 setupRevealAnimations();
@@ -306,4 +321,5 @@ setupCounters();
 loadAllocations();
 setupCardTilt();
 setupHeroParallax();
+setupVideoPlayButton();
 handleScroll();

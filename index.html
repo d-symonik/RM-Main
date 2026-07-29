@@ -58,10 +58,15 @@
                 <h2>The RM Loyalty Protocol, explained.</h2>
                 <p>A quick walkthrough of how RM turns everyday wallet activity into unlockable privileges, exclusivity, and savings.</p>
             </div>
-            <div class="video-frame reveal">
-                <video class="video-player" controls preload="none" poster="assets/video-poster.png" playsinline>
+            <div class="video-frame reveal" id="videoFrame">
+                <video class="video-player" id="watchVideo" preload="none" poster="assets/video-poster.png" playsinline>
                     <source src="https://mrace-public.s3.eu-central-1.amazonaws.com/race-miles-primary.mp4" type="video/mp4">
+                    Your browser does not support embedded video. You can <a href="https://mrace-public.s3.eu-central-1.amazonaws.com/race-miles-primary.mp4">download the video here</a> instead.
                 </video>
+
+                <button class="video-big-play" id="videoBigPlay" type="button" aria-label="Play: The RM Loyalty Protocol, explained">
+                    <span class="video-big-play-icon" aria-hidden="true"></span>
+                </button>
             </div>
         </section>
         <div class="benefit-strip reveal">

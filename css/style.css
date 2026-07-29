@@ -2180,7 +2180,43 @@ button {
     height: 100%;
     background: #000;
 }
+.video-big-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 207, 232, .5);
+    background: rgba(3, 7, 10, .55);
+    backdrop-filter: blur(4px);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(0, 207, 232, .25);
+    transition: .25s;
+    z-index: 2;
+}
 
+.video-big-play:hover {
+    transform: scale(1.06);
+    background: rgba(0, 207, 232, .16);
+    box-shadow: 0 0 45px rgba(0, 207, 232, .4);
+}
+
+.video-big-play-icon {
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    border-style: solid;
+    border-width: 13px 0 13px 22px;
+    border-color: transparent transparent transparent var(--text);
+}
+
+.video-frame.is-playing .video-big-play {
+    opacity: 0;
+    pointer-events: none;
+}
 .video-player::-webkit-media-controls-panel {
     background: linear-gradient(0deg, rgba(3, 7, 10, .9), transparent);
 }
