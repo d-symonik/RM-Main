@@ -2223,6 +2223,8 @@ button {
 @media (max-width: 1024px) {
     .video {
         grid-template-columns: 1fr;
+        gap: 24px;
+
     }
 }
 @media (max-width: 767px) {
