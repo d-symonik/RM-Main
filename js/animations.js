@@ -28,7 +28,9 @@ export function updateCounterTarget(selector, value) {
 	if (!counter) return;
 	counter.dataset.target = String(value);
 	counter.dataset.counterVersion = String(Number(counter.dataset.counterVersion || 0) + 1);
-	if (counter.dataset.counterStarted === 'true') setCounterValue(counter, value);
+	if (counter.dataset.counterStarted === 'true' || hasReducedMotion() || !('IntersectionObserver' in window)) {
+		setCounterValue(counter, value);
+	}
 	else counter.style.minWidth = `${formatCounterValue(counter, value).length}ch`;
 }
 
@@ -50,14 +52,15 @@ export function setupRevealAnimations() {
 
 export function setupCounters() {
 	getElements(SELECTORS.counters).forEach((counter) => {
-		const target = Number(counter.dataset.target);
-		counter.style.minWidth = `${formatCounterValue(counter, target).length}ch`;
+		const initialTarget = Number(counter.dataset.target);
+		counter.style.minWidth = `${formatCounterValue(counter, initialTarget).length}ch`;
 		if (hasReducedMotion() || !('IntersectionObserver' in window)) {
-			setCounterValue(counter, target);
+			setCounterValue(counter, initialTarget);
 			return;
 		}
 		const observer = new IntersectionObserver(([entry]) => {
 			if (!entry.isIntersecting) return;
+			const target = Number(counter.dataset.target);
 			const version = counter.dataset.counterVersion || '0';
 			counter.dataset.counterStarted = 'true';
 			const startTime = performance.now();
