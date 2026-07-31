@@ -18,11 +18,11 @@ const SELECTORS = {
 const USE_MOCK_ALLOCATIONS = true;
 const ALLOCATIONS_ENDPOINT = '/api/allocations';
 const MOCK_ALLOCATIONS = [
-		{ name: 'Genesis', rmAmount: 250000, passCount: 25000, price: 100, allocatedAmount: 80000, tone: 'orange',},
-		{ name: 'Growth', rmAmount: 250000, passCount: 25000, price: 200, allocatedAmount: 209000, tone: 'silver',isActive: true  },
-		{ name: 'Expansion', rmAmount: 20000, passCount: 25000, price: 300, allocatedAmount: 0, tone: 'gold' },
-		{ name: 'Legacy', rmAmount: 250000, passCount: 25000, price: 400, allocatedAmount: 0, tone: 'cyan' }
-	]
+	{ name: 'Genesis', rmAmount: 250000, passCount: 25000, price: 100, allocatedAmount: 80000, tone: 'orange',},
+	{ name: 'Growth', rmAmount: 250000, passCount: 25000, price: 200, allocatedAmount: 209000, tone: 'silver', isActive: true  },
+	{ name: 'Expansion', rmAmount: 20000, passCount: 25000, price: 300, allocatedAmount: 0, tone: 'gold' },
+	{ name: 'Legacy', rmAmount: 250000, passCount: 25000, price: 400, allocatedAmount: 0, tone: 'cyan' }
+]
 
 
 const header = document.querySelector(SELECTORS.header);
@@ -32,16 +32,16 @@ const hero = document.querySelector(SELECTORS.hero);
 const timeline = document.querySelector(SELECTORS.timeline);
 const allocationGrid = document.querySelector(SELECTORS.allocationGrid);
 const allocationProgress = document.querySelector(SELECTORS.allocationProgress);
-const sections = [...document.querySelectorAll(SELECTORS.sections)];
 const navigationLinks = navigation ? [...navigation.querySelectorAll('a')] : [];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let scrollTicking = false;
 
 function updateActiveNavigation() {
-	const currentSection = sections.reduce((current, section) => (
-		window.scrollY >= section.offsetTop - 140 ? section.id : current
-	), 'overview');
-	navigationLinks.forEach((link) => link.classList.toggle('active', link.hash === `#${currentSection}`));
+	const currentPath = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'index.html';
+	navigationLinks.forEach((link) => {
+		const linkPath = link.pathname.split('/').pop() || 'index.html';
+		link.classList.toggle('active', linkPath === currentPath);
+	});
 }
 
 function updateTimelineProgress() {
@@ -58,7 +58,6 @@ function handleScroll() {
 	scrollTicking = true;
 	window.requestAnimationFrame(() => {
 		header?.classList.toggle('scrolled', window.scrollY > 20);
-		updateActiveNavigation();
 		updateTimelineProgress();
 		scrollTicking = false;
 	});
@@ -177,20 +176,18 @@ function renderActiveAllocation(activeAllocation, allocations) {
 	const remaining = activeAllocation.rmAmount - sold;
 	const priceNow = document.querySelector('#allocPriceNow');
 	const priceNext = document.querySelector('#allocPriceNext');
-	const kicker = document.querySelector('#allocationKicker');
 	const title = document.querySelector('#allocationTitle');
 	const description = document.querySelector('#allocationDescription');
 
 	document.querySelector('#allocSold').textContent = sold.toLocaleString();
 	document.querySelector('#allocRemaining').textContent = remaining.toLocaleString();
 
-	kicker.textContent = `ALLOCATION ${allocations.indexOf(activeAllocation) + 1} — LIVE NOW`;
 	title.textContent = `${activeAllocation.rmAmount.toLocaleString()} RM at $${activeAllocation.price.toLocaleString()}`;
 	description.textContent = nextAllocation
 		? `The next ${nextAllocation.rmAmount.toLocaleString()} RM will be available at $${nextAllocation.price.toLocaleString()} per RM once this allocation is fully allocated.`
 		: `This is the final allocation. Once fully allocated, no further RM will be issued.`;
 
-	[kicker, title, description].forEach((el) => el.classList.remove('is-hidden'));
+	[title, description].forEach((el) => el.classList.remove('is-hidden'));
 
 	priceNow.textContent = `CURRENT PRICE — $${activeAllocation.price.toLocaleString()}`;
 	priceNext.textContent = nextAllocation ? `NEXT PRICE — $${nextAllocation.price.toLocaleString()}` : 'FINAL ALLOCATION';
@@ -317,6 +314,7 @@ function setupVideoPlayButton() {
 window.addEventListener('scroll', handleScroll, { passive: true });
 setupMenu();
 setupRevealAnimations();
+updateActiveNavigation();
 setupCounters();
 loadAllocations();
 setupCardTilt();

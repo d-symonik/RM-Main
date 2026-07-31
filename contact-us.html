@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contact the RM team for questions about the loyalty protocol, the Mining Race Wallet, or partnership opportunities.">
+    <title>Contact Us — RM (Race Miles) Loyalty Protocol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="site-bg" aria-hidden="true"><span class="trail trail-a"></span><span class="trail trail-b"></span><span class="grid-glow"></span></div>
+
+<header class="header" id="header">
+    <a class="brand" href="index.html" aria-label="RM home">
+        <img class="rm-logo" src="assets/rm-logo.png"/>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="protocol-progress.html">Progress</a>
+        <a href="about.html">About RM</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact-us.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+        <a class="btn btn-primary" href="#cta">Get RM Now <span>→</span></a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <section class="page-hero section reveal">
+        <h1>Here to Help</h1>
+        <p>Whether you have a question about RM, need assistance with the Mining Race Wallet, or are interested in exploring partnership opportunities, our team is here to help.</p>
+        <a class="btn btn-primary" href="#contact-form">Contact Us <span>→</span></a>
+    </section>
+
+    <section class="section" id="contact-form">
+        <form class="contact-form reveal" id="contactForm" novalidate>
+            <div class="form-row">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+            </div>
+            <div class="form-row">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="form-row">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-row">
+                <label for="enquiryType">Enquiry Type</label>
+                <select id="enquiryType" name="enquiryType" required>
+                    <option value="general">General Enquiry</option>
+                    <option value="technical">Technical Support</option>
+                    <option value="partnership">Partnership Enquiry</option>
+                    <option value="media">Media &amp; Press</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Enquiry <span>→</span></button>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-top">
+        <a class="brand" href="index.html" aria-label="RM home">
+            <img class="rm-logo" src="assets/rm-logo.png"/>
+        </a>
+        <div class="links">
+            <nav aria-label="Footer navigation">
+                <a href="contact-us.html">Contact</a>
+                <a href="terms-and-conditions.html">Terms</a>
+                <a href="privacy-policy.html">Privacy</a>
+            </nav>
+            <div class="socials"><a href="https://t.me/miningrace">TG</a></div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 RM (Race Miles). All rights reserved.</span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+	document.getElementById('contactForm')?.addEventListener('submit', (event) => {
+		event.preventDefault();
+		event.target.reset();
+	});
+</script>
+</body>
+</html>
