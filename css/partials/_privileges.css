@@ -1,0 +1,352 @@
+/* Privileges */
+.privilege-list {
+    display: flex;
+    flex-direction: column;
+    gap: 70px
+}
+
+.privilege-card {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 60px;
+    align-items: center
+}
+
+.privilege-card.reverse .privilege-media {
+    order: 2
+}
+
+.privilege-media {
+    display: grid;
+    place-items: center
+}
+
+.privilege-media img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .5))
+}
+
+.privilege-tiers {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px
+}
+
+.tier-badge {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    font: 800 15px "Space Grotesk";
+    border-radius: 6px;
+    border: 1px solid;
+    padding: 5px
+}
+
+.tier-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.tier-head-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto
+}
+
+.tier-badge.tier-r {
+    color: var(--bronze);
+    border-color: var(--bronze);
+    background: rgba(154, 85, 32, .12)
+}
+
+.tier-badge.tier-c {
+    color: var(--silver);
+    border-color: var(--silver);
+    background: rgba(201, 205, 208, .1)
+}
+
+.tier-badge.tier-l {
+    color: var(--gold2);
+    border-color: var(--gold);
+    background: rgba(243, 163, 77, .12)
+}
+
+.privilege-body h3 {
+    font-family: "Space Grotesk";
+    font-size: clamp(26px, 3vw, 34px);
+    margin: 0 0 12px;
+    letter-spacing: -.02em
+}
+
+.privilege-lead {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 26px
+}
+
+.privilege-how {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--cyan);
+    margin: 0 0 14px
+}
+
+.privilege-steps {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.privilege-steps li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 4px
+}
+
+.privilege-steps li::marker {
+    color: var(--cyan);
+    font-weight: 700
+}
+
+.privilege-foot {
+    margin: 20px 0 0;
+    font-size: 13px;
+    color: var(--text)
+}
+
+/* Exclusivity */
+.exclusivity {
+    padding: 55px
+}
+
+.partner-matrix {
+    display: flex;
+    flex-direction: column
+}
+
+.partner-row {
+    display: grid;
+    grid-template-columns: 1fr 70px 70px 70px;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border)
+}
+
+.partner-row:last-child {
+    border-bottom: 0
+}
+
+.partner-row.head {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding-bottom: 14px
+}
+
+.partner-row.head span:not(:first-child) {
+    text-align: center
+}
+
+.partner-row span:first-child {
+    font-family: "Space Grotesk";
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+.partner-row span:first-child small {
+    font-family: Inter;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400
+}
+
+.partner-group {
+    padding: 22px 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--gold2);
+    text-transform: uppercase
+}
+
+.dot {
+    justify-self: center;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1)
+}
+
+.dot.on {
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan)
+}
+
+/* Savings */
+.savings-table {
+    border: var(--panel-border);
+    border-radius: var(--radius);
+    overflow: hidden
+}
+
+.savings-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 90px 90px;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border)
+}
+
+.savings-row:last-child {
+    border-bottom: 0
+}
+
+.savings-row.head {
+    background: var(--white-03);
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase
+}
+
+.savings-row span:first-child {
+    font-family: "Space Grotesk";
+    font-size: 15px
+}
+
+.savings-row:not(.head) span:not(:first-child) {
+    text-align: center;
+    font: 700 16px "Space Grotesk";
+    color: var(--gold2)
+}
+
+.savings-row.head span:not(:first-child) {
+    text-align: center
+}
+
+@media (max-width: 900px) {
+    .privilege-card, .privilege-card.reverse {
+        grid-template-columns: 1fr;
+        gap: 28px
+    }
+
+    .privilege-card.reverse .privilege-media {
+        order: 0
+    }
+
+    .privilege-media img {
+        max-width: 260px
+    }
+
+    .exclusivity {
+        padding: 30px 20px
+    }
+
+    .partner-row, .savings-row {
+        grid-template-columns: 1fr 46px 46px 46px;
+        padding: 14px 0
+    }
+
+    .savings-row {
+        padding: 14px 16px
+    }
+}
+.is-hidden {
+    display: none;
+}
+.rm-logo {
+    max-width: 128px;
+}
+.video {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+.video-frame {
+    position: relative;
+    margin-top: 10px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: var(--panel-border);
+    background: var(--black);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .45), 0 0 50px rgba(0, 207, 232, .1);
+    aspect-ratio: 16 / 9;
+}
+
+.video-player {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+}
+.video-big-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    border: 1px solid var(--cyan-50);
+    background: rgba(3, 7, 10, .55);
+    backdrop-filter: blur(4px);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 30px var(--cyan-25);
+    transition: var(--transition-fast);
+    z-index: 2;
+}
+
+.video-big-play:hover {
+    transform: scale(1.06);
+    background: rgba(0, 207, 232, .16);
+    box-shadow: 0 0 45px rgba(0, 207, 232, .4);
+}
+
+.video-big-play-icon {
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    border-style: solid;
+    border-width: 13px 0 13px 22px;
+    border-color: transparent transparent transparent var(--text);
+}
+
+.video-frame.is-playing .video-big-play {
+    opacity: 0;
+    pointer-events: none;
+}
+.video-player::-webkit-media-controls-panel {
+    background: linear-gradient(0deg, rgba(3, 7, 10, .9), transparent);
+}
+@media (max-width: 1024px) {
+    .video {
+        grid-template-columns: 1fr;
+        gap: 24px;
+
+    }
+}
+@media (max-width: 767px) {
+
+    .video-frame {
+        border-radius: 12px;
+        aspect-ratio: 16 / 10;
+    }
+}

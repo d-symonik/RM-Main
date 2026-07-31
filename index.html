@@ -73,9 +73,33 @@
             <p>The Mining Race Wallet fuels a growing community of users, transactions, and partners, forming the foundation of the RM loyalty ecosystem.</p>
         </div>
         <div class="wallet-stats-grid">
-            <div class="wallet-stat"><strong>120,000+</strong><p>Wallet Users</p></div>
-            <div class="wallet-stat"><strong>$1.4 Billion</strong><p>Transaction Value</p></div>
-            <div class="wallet-stat"><strong>2.5 Million+</strong><p>Transactions Processed</p></div>
+            <div class="wallet-stat">
+                <strong
+                    class="counter"
+                    data-target="120000"
+                    data-suffix="+"
+                >120,000+</strong>
+                <p>Wallet Users</p>
+            </div>
+            <div class="wallet-stat">
+                <strong
+                    class="counter"
+                    data-target="1.4"
+                    data-decimals="1"
+                    data-prefix="$"
+                    data-suffix=" Billion"
+                >$1.4 Billion</strong>
+                <p>Transaction Value</p>
+            </div>
+            <div class="wallet-stat">
+                <strong
+                    class="counter"
+                    data-target="2.5"
+                    data-decimals="1"
+                    data-suffix=" Million+"
+                >2.5 Million+</strong>
+                <p>Transactions Processed</p>
+            </div>
         </div>
         <div class="wallet-stats-cta">
             <a class="btn btn-ghost" href="about.html#wallet">Mining Race Wallet <span>→</span></a>
@@ -114,32 +138,6 @@
             <h2>Loyalty Passes</h2>
             <p>Loyalty Passes represent your RM tier, each offering distinct privileges and rewards.</p>
         </div>
-<!--        <div class="pass-layout">-->
-<!--            <div class="timeline reveal" id="timeline">-->
-<!--                <div class="timeline-progress"></div>-->
-<!--                <div class="time-step active">-->
-<!--                    <strong>01</strong>-->
-<!--                    <span>START</span>-->
-<!--                </div>-->
-<!--                <div class="time-step">-->
-<!--                    <strong>10-->
-<!--                        <small>RM</small>-->
-<!--                    </strong>-->
-<!--                    <span>UNLOCK</span></div>-->
-<!--                <div class="time-step">-->
-<!--                    <strong>20-->
-<!--                        <small>RM</small>-->
-<!--                    </strong>-->
-<!--                    <span>UNLOCK MORE</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="pass-stack">-->
-<!--                <article class="pass-card bronze tilt reveal"><div class="shine"></div><div class="pass-letter">R</div><div><small>RACER PASS</small><strong>1–9 RM</strong></div><div class="discount"><b>1%</b><span>PRODUCT DISCOUNT</span></div></article>-->
-<!--                <article class="pass-card chrome tilt reveal"><div class="shine"></div><div class="pass-letter">C</div><div><small>CHAMPION PASS</small><strong>10–19 RM</strong></div><div class="discount"><b>5%</b><span>PRODUCT DISCOUNT</span></div></article>-->
-<!--                <article class="pass-card gold tilt reveal"><div class="shine"></div><div class="pass-letter">L</div><div><small>LEGEND PASS</small><strong>20+ RM</strong></div><div class="discount"><b>10%</b><span>PRODUCT DISCOUNT</span></div></article>-->
-<!--            </div>-->
-<!--        </div>-->
-
         <div class="pass-details">
             <article class="privilege-card reverse reveal">
                 <div class="privilege-media"><img src="assets/passes/racer_pass_black.png" alt="Racer Pass"></div>
@@ -379,6 +377,6 @@
     </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
