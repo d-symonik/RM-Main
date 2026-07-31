@@ -151,7 +151,8 @@
 .form-row label {
     font-size: 12px;
     letter-spacing: .04em;
-    color: var(--muted)
+    color: var(--muted);
+    transition: color .2s
 }
 
 .contact-form input,
@@ -189,6 +190,29 @@
     box-shadow: 0 0 0 3px var(--cyan-12)
 }
 
+.form-row.has-error label,
+.field-error {
+    color: #ff6b6b
+}
+
+.form-row.has-error input,
+.form-row.has-error select,
+.form-row.has-error textarea {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, .14)
+}
+
+.field-error {
+    display: none;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4
+}
+
+.form-row.has-error .field-error {
+    display: block
+}
+
 .contact-form .btn {
     justify-self: start;
     border: 1px solid var(--cyan-35);
@@ -196,13 +220,27 @@
 }
 
 .form-status {
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: 8px;
     font-size: 13px;
-    color: var(--cyan);
     display: none
 }
 
 .form-status.visible {
     display: block
+}
+
+.form-status.success {
+    color: var(--cyan);
+    border-color: var(--cyan-35);
+    background: var(--cyan-12)
+}
+
+.form-status.error {
+    color: #ff8c8c;
+    border-color: rgba(255, 107, 107, .55);
+    background: rgba(255, 107, 107, .1)
 }
 
 @media (max-width: 767px) {

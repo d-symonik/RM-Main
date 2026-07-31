@@ -8,6 +8,7 @@ import {
 import { setupNavigation } from './navigation.js';
 import { setupScroll } from './scroll.js';
 import { setupVideoPlayer } from './video.js';
+import { setupContactForm } from './contact-form.js';
 
 function initializePage() {
 	setupNavigation();
@@ -18,6 +19,7 @@ function initializePage() {
 	setupCardTilt();
 	setupHeroParallax();
 	setupVideoPlayer();
+	setupContactForm();
 }
 
 initializePage();
