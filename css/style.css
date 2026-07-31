@@ -1078,7 +1078,9 @@ button {
 .faq {
     padding-bottom: 80px
 }
-
+.faq .section-heading h2 {
+    text-align: center;
+}
 .faq details {
     border-bottom: 1px solid var(--border);
     padding: 20px 0
