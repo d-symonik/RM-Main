@@ -37,7 +37,10 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let scrollTicking = false;
 
 function updateActiveNavigation() {
-	const currentPath = window.location.pathname.replace(/\/$/, '').split('/').pop() || 'index.html';
+	const rawPath = window.location.pathname.replace(/\/$/, '');
+	const lastSegment = rawPath.split('/').pop();
+	const currentPath = lastSegment && lastSegment.includes('.') ? lastSegment : 'index.html';
+
 	navigationLinks.forEach((link) => {
 		const linkPath = link.pathname.split('/').pop() || 'index.html';
 		link.classList.toggle('active', linkPath === currentPath);
